@@ -14,9 +14,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         View pantryCard = findViewById(R.id.cardPantry);
+        View recipesCard = findViewById(R.id.cardRecipes);
 
         pantryCard.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, PantryActivity.class);
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    PantryActivity.class
+            );
+
+            startActivity(intent);
+        });
+
+        recipesCard.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    RecipesActivity.class
+            );
+
             startActivity(intent);
         });
     }
