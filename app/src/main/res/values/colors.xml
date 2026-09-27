@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- Warm base colours inspired by traditional Italian kitchens -->
+    <color name="cream">#F4EFE6</color>
+    <color name="warm_white">#FFFCF7</color>
+
+    <!-- Primary brand colours -->
+    <color name="espresso">#2C2118</color>
+    <color name="olive">#596044</color>
+    <color name="deep_olive">#414832</color>
+
+    <!-- Used sparingly for warmth and emphasis -->
+    <color name="wine">#713F3D</color>
+
+    <!-- Supporting text and borders -->
+    <color name="stone">#756E65</color>
+    <color name="soft_border">#D8D0C3</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
 </resources>

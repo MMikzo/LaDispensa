@@ -1,19 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/cream"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:paddingStart="28dp"
+        android:paddingTop="44dp"
+        android:paddingEnd="28dp"
+        android:paddingBottom="32dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- The brand is intentionally text-led rather than logo-heavy.
+             It keeps the opening screen simple and traditional. -->
+        <TextView
+            android:id="@+id/textBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LA DISPENSA"
+            android:textColor="@color/espresso"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="La cucina comincia dalla dispensa."
+            android:textColor="@color/stone"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+
+        <View
+            android:layout_width="54dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/wine" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:text="Buongiorno"
+            android:textColor="@color/espresso"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="26dp"
+            android:text="What's in your kitchen today?"
+            android:textColor="@color/stone"
+            android:textSize="15sp" />
+
+        <!-- Pantry -->
+        <LinearLayout
+            android:id="@+id/cardPantry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/home_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LA MIA DISPENSA"
+                android:textColor="@color/deep_olive"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="View and manage your pantry"
+                android:textColor="@color/stone"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:text="→"
+                android:textColor="@color/wine"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <!-- Recipes -->
+        <LinearLayout
+            android:id="@+id/cardRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/home_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RICETTE"
+                android:textColor="@color/deep_olive"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="Cook with what you already have"
+                android:textColor="@color/stone"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:text="→"
+                android:textColor="@color/wine"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <!-- Settings -->
+        <LinearLayout
+            android:id="@+id/cardSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/home_card"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IMPOSTAZIONI"
+                android:textColor="@color/deep_olive"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="Personalise your kitchen"
+                android:textColor="@color/stone"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:text="→"
+                android:textColor="@color/wine"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="34dp"
+            android:text="Mangia bene. Spreca meno."
+            android:textColor="@color/stone"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+</ScrollView>
