@@ -2,13 +2,17 @@ package com.maddcore.ladispensa;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -21,6 +25,10 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        // Set up navigation toolbar
+        Toolbar toolbar = findViewById(R.id.mainToolbar);
+        setSupportActionBar(toolbar);
 
         switchVegetarian = findViewById(R.id.switchVegetarian);
         radioCookingLevel = findViewById(R.id.radioCookingLevel);
@@ -100,5 +108,26 @@ public class SettingsActivity extends AppCompatActivity {
                 "Preferences saved",
                 Toast.LENGTH_SHORT
         ).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(
+                R.menu.main_menu,
+                menu
+        );
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (NavigationHelper.handleNavigation(this, item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
