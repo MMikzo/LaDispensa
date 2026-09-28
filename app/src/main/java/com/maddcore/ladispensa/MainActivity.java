@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         View pantryCard = findViewById(R.id.cardPantry);
         View recipesCard = findViewById(R.id.cardRecipes);
+        View settingsCard = findViewById(R.id.cardSettings);
 
         pantryCard.setOnClickListener(v -> {
 
@@ -31,6 +32,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(
                     MainActivity.this,
                     RecipesActivity.class
+            );
+
+            startActivity(intent);
+        });
+
+        settingsCard.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    SettingsActivity.class
             );
 
             startActivity(intent);
