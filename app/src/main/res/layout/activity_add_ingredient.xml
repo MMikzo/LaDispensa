@@ -1,85 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cream"
-    android:orientation="vertical"
-    android:paddingStart="28dp"
-    android:paddingTop="42dp"
-    android:paddingEnd="28dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/textAddIngredientTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NUOVO INGREDIENTE"
-        android:textColor="@color/espresso"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:letterSpacing="0.07" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="Add something from your kitchen."
-        android:textColor="@color/stone"
-        android:textSize="14sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:text="INGREDIENT NAME"
-        android:textColor="@color/espresso"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editIngredientName"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/olive"
-        android:hint="e.g. Tomatoes"
-        android:inputType="textCapWords"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:singleLine="true"
-        android:textColor="@color/espresso"
-        android:textColorHint="@color/stone" />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="CATEGORY"
-        android:textColor="@color/espresso"
-        android:textSize="13sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:paddingStart="28dp"
+        android:paddingTop="42dp"
+        android:paddingEnd="28dp"
+        android:paddingBottom="40dp">
 
-    <EditText
-        android:id="@+id/editIngredientCategory"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/olive"
-        android:hint="e.g. Vegetables"
-        android:inputType="textCapWords"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:singleLine="true"
-        android:textColor="@color/espresso"
-        android:textColorHint="@color/stone" />
+        <TextView
+            android:id="@+id/textAddIngredientTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NUOVO INGREDIENTE"
+            android:textColor="@color/espresso"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.07" />
 
-    <Button
-        android:id="@+id/buttonSaveIngredient"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="@color/deep_olive"
-        android:text="SAVE TO PANTRY"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Add something from your kitchen."
+            android:textColor="@color/stone"
+            android:textSize="14sp" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="INGREDIENT NAME"
+            android:textColor="@color/espresso"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editIngredientName"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/olive"
+            android:hint="e.g. Tomatoes"
+            android:inputType="textCapWords"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:singleLine="true"
+            android:textColor="@color/espresso"
+            android:textColorHint="@color/stone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="CATEGORY"
+            android:textColor="@color/espresso"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editIngredientCategory"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/olive"
+            android:hint="e.g. Vegetables"
+            android:inputType="textCapWords"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:singleLine="true"
+            android:textColor="@color/espresso"
+            android:textColorHint="@color/stone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="QUANTITY"
+            android:textColor="@color/espresso"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editIngredientQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/olive"
+            android:hint="e.g. 500"
+            android:inputType="numberDecimal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:singleLine="true"
+            android:textColor="@color/espresso"
+            android:textColorHint="@color/stone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="UNIT"
+            android:textColor="@color/espresso"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editIngredientUnit"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/olive"
+            android:hint="e.g. g, ml, cups, pieces"
+            android:inputType="text"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:singleLine="true"
+            android:textColor="@color/espresso"
+            android:textColorHint="@color/stone" />
+
+        <Button
+            android:id="@+id/buttonSaveIngredient"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/deep_olive"
+            android:text="SAVE TO PANTRY"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

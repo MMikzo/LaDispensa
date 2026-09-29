@@ -12,6 +12,8 @@ public class AddIngredientActivity extends AppCompatActivity {
 
     private EditText editName;
     private EditText editCategory;
+    private EditText editQuantity;
+    private EditText editUnit;
 
     private DatabaseHelper databaseHelper;
 
@@ -25,6 +27,8 @@ public class AddIngredientActivity extends AppCompatActivity {
 
         editName = findViewById(R.id.editIngredientName);
         editCategory = findViewById(R.id.editIngredientCategory);
+        editQuantity = findViewById(R.id.editIngredientQuantity);
+        editUnit = findViewById(R.id.editIngredientUnit);
 
         Button saveButton =
                 findViewById(R.id.buttonSaveIngredient);
@@ -51,8 +55,28 @@ public class AddIngredientActivity extends AppCompatActivity {
                     getIntent().getStringExtra(
                             "ingredient_category");
 
+            double quantity =
+                    getIntent().getDoubleExtra(
+                            "ingredient_quantity", 1.0);
+
+            String unit =
+                    getIntent().getStringExtra(
+                            "ingredient_unit");
+
             editName.setText(name);
             editCategory.setText(category);
+
+            if (quantity == Math.floor(quantity)) {
+                editQuantity.setText(
+                        String.valueOf((int) quantity));
+            } else {
+                editQuantity.setText(
+                        String.valueOf(quantity));
+            }
+
+            if (unit != null) {
+                editUnit.setText(unit);
+            }
 
             title.setText("MODIFICA INGREDIENTE");
             saveButton.setText("SAVE CHANGES");
@@ -70,7 +94,13 @@ public class AddIngredientActivity extends AppCompatActivity {
         String category =
                 editCategory.getText().toString().trim();
 
-        // Validation
+        String quantityText =
+                editQuantity.getText().toString().trim();
+
+        String unit =
+                editUnit.getText().toString().trim();
+
+        // Name validation
         if (name.isEmpty()) {
 
             editName.setError(
@@ -80,6 +110,7 @@ public class AddIngredientActivity extends AppCompatActivity {
             return;
         }
 
+        // Category validation
         if (category.isEmpty()) {
 
             editCategory.setError(
@@ -89,13 +120,60 @@ public class AddIngredientActivity extends AppCompatActivity {
             return;
         }
 
+        // Quantity validation
+        if (quantityText.isEmpty()) {
+
+            editQuantity.setError(
+                    "Enter a quantity");
+
+            editQuantity.requestFocus();
+            return;
+        }
+
+        double quantity;
+
+        try {
+
+            quantity =
+                    Double.parseDouble(quantityText);
+
+        } catch (NumberFormatException e) {
+
+            editQuantity.setError(
+                    "Enter a valid quantity");
+
+            editQuantity.requestFocus();
+            return;
+        }
+
+        if (quantity <= 0) {
+
+            editQuantity.setError(
+                    "Quantity must be greater than 0");
+
+            editQuantity.requestFocus();
+            return;
+        }
+
+        // Unit validation
+        if (unit.isEmpty()) {
+
+            editUnit.setError(
+                    "Enter a unit");
+
+            editUnit.requestFocus();
+            return;
+        }
+
         if (editMode) {
 
             Ingredient ingredient =
                     new Ingredient(
                             ingredientId,
                             name,
-                            category
+                            category,
+                            quantity,
+                            unit
                     );
 
             int result =
@@ -124,7 +202,12 @@ public class AddIngredientActivity extends AppCompatActivity {
         } else {
 
             Ingredient ingredient =
-                    new Ingredient(name, category);
+                    new Ingredient(
+                            name,
+                            category,
+                            quantity,
+                            unit
+                    );
 
             long result =
                     databaseHelper.addIngredient(

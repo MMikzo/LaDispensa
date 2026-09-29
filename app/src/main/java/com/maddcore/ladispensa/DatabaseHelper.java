@@ -16,13 +16,15 @@ import java.util.Set;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ladispensa.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Pantry table
     private static final String TABLE_INGREDIENTS = "ingredients";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_CATEGORY = "category";
+    private static final String COLUMN_QUANTITY = "quantity";
+    private static final String COLUMN_UNIT = "unit";
 
     // Recipe table
     private static final String TABLE_RECIPES = "recipes";
@@ -47,10 +49,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-        // Version 2 introduced recipes. Existing pantry data stays untouched.
+        // Version 2 introduced recipes.
         if (oldVersion < 2) {
             createRecipeTable(db);
             seedRecipes(db);
+        }
+
+        // Version 3 adds quantity and unit to pantry ingredients.
+        // Existing ingredients are preserved.
+        if (oldVersion < 3) {
+
+            db.execSQL(
+                    "ALTER TABLE " + TABLE_INGREDIENTS +
+                            " ADD COLUMN " + COLUMN_QUANTITY +
+                            " REAL NOT NULL DEFAULT 1"
+            );
+
+            db.execSQL(
+                    "ALTER TABLE " + TABLE_INGREDIENTS +
+                            " ADD COLUMN " + COLUMN_UNIT +
+                            " TEXT NOT NULL DEFAULT 'item'"
+            );
         }
     }
 
@@ -60,7 +79,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "CREATE TABLE " + TABLE_INGREDIENTS + " (" +
                         COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME + " TEXT NOT NULL, " +
-                        COLUMN_CATEGORY + " TEXT NOT NULL)";
+                        COLUMN_CATEGORY + " TEXT NOT NULL, " +
+                        COLUMN_QUANTITY + " REAL NOT NULL DEFAULT 1, " +
+                        COLUMN_UNIT + " TEXT NOT NULL DEFAULT 'item')";
 
         db.execSQL(sql);
     }
@@ -88,6 +109,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, ingredient.getName());
         values.put(COLUMN_CATEGORY, ingredient.getCategory());
+        values.put(COLUMN_QUANTITY, ingredient.getQuantity());
+        values.put(COLUMN_UNIT, ingredient.getUnit());
 
         return db.insert(TABLE_INGREDIENTS, null, values);
     }
@@ -118,8 +141,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String category = cursor.getString(
                         cursor.getColumnIndexOrThrow(COLUMN_CATEGORY));
 
+                double quantity = cursor.getDouble(
+                        cursor.getColumnIndexOrThrow(COLUMN_QUANTITY));
+
+                String unit = cursor.getString(
+                        cursor.getColumnIndexOrThrow(COLUMN_UNIT));
+
                 ingredients.add(
-                        new Ingredient(id, name, category)
+                        new Ingredient(id, name, category, quantity, unit)
                 );
 
             } while (cursor.moveToNext());
@@ -136,6 +165,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, ingredient.getName());
         values.put(COLUMN_CATEGORY, ingredient.getCategory());
+        values.put(COLUMN_QUANTITY, ingredient.getQuantity());
+        values.put(COLUMN_UNIT, ingredient.getUnit());
 
         return db.update(
                 TABLE_INGREDIENTS,

@@ -47,7 +47,28 @@ public class IngredientAdapter
         Ingredient ingredient = ingredients.get(position);
 
         holder.name.setText(ingredient.getName());
-        holder.category.setText(ingredient.getCategory());
+
+        String quantityText;
+
+        if (ingredient.getQuantity()
+                == Math.floor(ingredient.getQuantity())) {
+
+            quantityText =
+                    String.valueOf((int) ingredient.getQuantity());
+
+        } else {
+
+            quantityText =
+                    String.valueOf(ingredient.getQuantity());
+        }
+
+        holder.category.setText(
+                ingredient.getCategory()
+                        + "  •  "
+                        + quantityText
+                        + " "
+                        + ingredient.getUnit()
+        );
 
         // EDIT
         holder.edit.setOnClickListener(v -> {
@@ -57,9 +78,30 @@ public class IngredientAdapter
                     AddIngredientActivity.class
             );
 
-            intent.putExtra("ingredient_id", ingredient.getId());
-            intent.putExtra("ingredient_name", ingredient.getName());
-            intent.putExtra("ingredient_category", ingredient.getCategory());
+            intent.putExtra(
+                    "ingredient_id",
+                    ingredient.getId()
+            );
+
+            intent.putExtra(
+                    "ingredient_name",
+                    ingredient.getName()
+            );
+
+            intent.putExtra(
+                    "ingredient_category",
+                    ingredient.getCategory()
+            );
+
+            intent.putExtra(
+                    "ingredient_quantity",
+                    ingredient.getQuantity()
+            );
+
+            intent.putExtra(
+                    "ingredient_unit",
+                    ingredient.getUnit()
+            );
 
             context.startActivity(intent);
         });
@@ -70,23 +112,30 @@ public class IngredientAdapter
             new AlertDialog.Builder(context)
                     .setTitle("Remove ingredient?")
                     .setMessage(
-                            "Remove " + ingredient.getName()
+                            "Remove "
+                                    + ingredient.getName()
                                     + " from your pantry?"
                     )
-                    .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Delete", (dialog, which) -> {
+                    .setNegativeButton(
+                            "Cancel",
+                            null
+                    )
+                    .setPositiveButton(
+                            "Delete",
+                            (dialog, which) -> {
 
-                        DatabaseHelper databaseHelper =
-                                new DatabaseHelper(context);
+                                DatabaseHelper databaseHelper =
+                                        new DatabaseHelper(context);
 
-                        int result = databaseHelper.deleteIngredient(
-                                ingredient.getId()
-                        );
+                                int result =
+                                        databaseHelper.deleteIngredient(
+                                                ingredient.getId()
+                                        );
 
-                        if (result > 0) {
-                            refreshPantry.run();
-                        }
-                    })
+                                if (result > 0) {
+                                    refreshPantry.run();
+                                }
+                            })
                     .show();
         });
     }
@@ -104,20 +153,26 @@ public class IngredientAdapter
         TextView edit;
         TextView delete;
 
-        public IngredientViewHolder(@NonNull View itemView) {
+        public IngredientViewHolder(
+                @NonNull View itemView) {
+
             super(itemView);
 
             name = itemView.findViewById(
-                    R.id.textIngredientName);
+                    R.id.textIngredientName
+            );
 
             category = itemView.findViewById(
-                    R.id.textIngredientCategory);
+                    R.id.textIngredientCategory
+            );
 
             edit = itemView.findViewById(
-                    R.id.buttonEditIngredient);
+                    R.id.buttonEditIngredient
+            );
 
             delete = itemView.findViewById(
-                    R.id.buttonDeleteIngredient);
+                    R.id.buttonDeleteIngredient
+            );
         }
     }
 }
